@@ -9,9 +9,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x, 18.x]
@@ -23,4 +21,28 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: echo ${{ matrix.node-version }}
+    - run: |
+      echo ${{ matrix.node-version }}
+      echo "Hello, world!" ${{ matrix.node-version }} > output_${{ matrix.node-version }}.txt
+          
+      # Carregue o artefato com um nome único
+      actions/upload-artifact@v2 -n my-artifact_${{ matrix.node-version }} -r output_${{ matrix.node-version }}.txt
+
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 18.x]
+
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Baixar artefato
+        uses: actions/download-artifact@v2 -n my-artifact_${{ matrix.node-version }}
+
+      - name: Usar artefato
+        run: |
+          # Exiba o conteúdo do artefato baixado
+          cat output_${{ matrix.node-version }}.txt
