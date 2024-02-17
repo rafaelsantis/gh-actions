@@ -40,7 +40,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Baixar artefato
-        uses: actions/download-artifact@v2 -n my-artifact_${{ matrix.node-version }}
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts_${{ matrix.node-version }}
 
       - name: Usar artefato
         run: |
