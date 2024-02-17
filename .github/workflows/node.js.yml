@@ -60,6 +60,15 @@ jobs:
         with:
           name: output_${{ matrix.node-version }}.txt
 
+      - name: Upload artifact to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Replace with your PAT or a secret
+        with:
+          asset_path: 'output_${{ matrix.node-version }}.txt'  # Customize this path based on your artifact location
+          asset_name: 'output_${{ matrix.node-version }}.txt'  # Define the uploaded file name
+          release_tag: action_${{ github.ref }}  # Use the commit SHA as the release tag
+
       - name: Unzip and display artifacts
         run: |
           cat output_${{ matrix.node-version }}.txt
