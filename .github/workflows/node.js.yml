@@ -21,8 +21,8 @@ jobs:
 
       - name: Run tests
         run: |
-        echo ${{ matrix.node-version }}
-        echo "Hello, world!" ${{ matrix.node-version }} > output_${{ matrix.node-version }}.txt
+          echo ${{ matrix.node-version }}
+          echo "Hello, world!" ${{ matrix.node-version }} > output_${{ matrix.node-version }}.txt
 
       - name: Upload build artifacts (optional)
         uses: actions/upload-artifact@v2
