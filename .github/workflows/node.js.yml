@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: output_${{ matrix.node-version }}.txt
-          #path: 'dist/*'  # Customize this path based on your build output location
+          path: './'  # Customize this path based on your build output location
 
   release:
     runs-on: ubuntu-latest
