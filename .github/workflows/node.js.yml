@@ -39,7 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: ${{ github.ref }}  # Use a tag do commit
+          tag_name: "action_${{ github.ref }}"  # Use a tag do commit
           release_name: "Release ${{ github.ref }}"  # Personalize o nome da release
           body: "**Mudanças:**\n\n* ${{ github.ref }}\n\n**Builds:**\n*"  # Detalhe as mudanças e builds
           draft: false  # Publique a release automaticamente (ou defina como `true` para rascunho)
