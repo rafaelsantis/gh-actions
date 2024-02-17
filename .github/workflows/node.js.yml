@@ -41,7 +41,7 @@ jobs:
         with:
           tag_name: "v${{ github.sha }}"  # Use semantic versioning and sha
           release_name: "Release ${{ github.sha }}"
-          body: "**Changes:**\n\n* ${{ github.ref }}\n\n**Builds:**\n* Node.js ${{ matrix.node-version }}" for each job
+          body: "**Changes:**\n\n* ${{ github.ref }}\n\n**Builds:**\n*"
           draft: false  # Publique a release automaticamente (ou defina como `true` para rascunho)
           prerelease: false  # Marque como pré-lançamento (opcional)
 
